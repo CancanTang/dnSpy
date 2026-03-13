@@ -1,8 +1,8 @@
-param([string]$buildtfm = 'all', [switch]$NoMsbuild)
+param([string]$buildtfm = 'net-x64', [switch]$NoMsbuild)
 $ErrorActionPreference = 'Stop'
 
 $netframework_tfm = 'net48'
-$net_tfm = 'net5.0-windows'
+$net_tfm = 'net8.0-windows'
 $configuration = 'Release'
 $net_baseoutput = "dnSpy\dnSpy\bin\$configuration"
 $apphostpatcher_dir = "Build\AppHostPatcher"
@@ -46,8 +46,8 @@ function Build-Net {
 	$publishDir = "$outdir\publish"
 
 	if ($NoMsbuild) {
-		dotnet publish -v:m -c $configuration -f $net_tfm -r $rid --self-contained
-		if ($LASTEXITCODE) { exit $LASTEXITCODE }
+		dotnet publish -v:m -c $configuration -f $net_tfm -r $rid --self-contained false
+		
 	}
 	else {
 		msbuild -v:m -m -restore -t:Publish -p:Configuration=$configuration -p:TargetFramework=$net_tfm -p:RuntimeIdentifier=$rid -p:SelfContained=True

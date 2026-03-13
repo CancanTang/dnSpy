@@ -5,7 +5,7 @@
         - build.ps1
         - .github/workflows/build.yml
     NOTE: Update the ABOVE files when TargetFrameworks is updated -->
-    <TargetFrameworks>net48;net5.0-windows</TargetFrameworks>
+    <TargetFrameworks>net48;net8.0-windows</TargetFrameworks>
     <IsDotNetFramework>false</IsDotNetFramework>
     <IsDotNet>false</IsDotNet>
     <IsSelfContainedDotNet>false</IsSelfContainedDotNet>
@@ -55,6 +55,7 @@
     <HasCOMReference>false</HasCOMReference>
     <HasCOMReference Condition=" '$(MSBuildRuntimeType)' != 'Core' ">true</HasCOMReference>
     <DefineConstants Condition=" '$(HasCOMReference)' == 'true' ">$(DefineConstants);HAS_COMREFERENCE</DefineConstants>
+<EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
   </PropertyGroup>
 
 </Project>
